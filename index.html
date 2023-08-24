@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="./grid.css">
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <div class="form-container">
+        <form action="" method="POST" class="form" id="order-form">
+            <div class="form-wrapper">
+                <div class="form-left">
+                        <div class="form-group-double row-input">
+                            <div class="form-group col-input l-6 m-6 c-12">
+                                <label html-for="fullname" class="form-label">
+                                    Your Full Name
+                                </label>
+                                <input id="fullname" name="fullname" rules="required" type="text" placeholder="Full name" class="form-control" />
+                                <span class="form-message"></span>
+                            </div>
+                            <div class="form-group col-input l-6 m-6 c-12">
+                                <label html-for="email" class="form-label">
+                                    Email
+                                </label>
+                                <input id="email" name="email" rules="required|email" type="text" placeholder="Email" class="form-control" />
+                                <span class="form-message"></span>
+                            </div>
+                        </div>
+                        <div class="form-group-double" row-input>
+                            <div class="form-group col-input l-6 m-6 c-12">
+                                <label html-for="phone-number" class="form-label">
+                                    Phone number
+                                </label>
+                                <input id="phone-number" name="phone-number" rules="required|phone" type="text" placeholder="Ex: 0123456789" class="form-control" />
+                                <span class="form-message"></span>
+                            </div>
+                            <div class="form-group col-input l-6 m-6 c-12">
+                                <label html-for="delivery-address" class="form-label">
+                                    Delivery address
+                                </label>
+                                <input id="delivery-address" name="delivery-address" rules="required" type="text" placeholder="123 Main Street" class="form-control" />
+                                <span class="form-message"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                                <label html-for="item-description" class="form-label">
+                                    Item description
+                                </label>
+                                <input id="item-description" name="item-description" type="text" placeholder="Ex: extra cheese, if nothing then leave this blank" class="form-control" />
+                                <span class="form-message"></span>
+                        </div>
+                    </div>
+                <div class='form-right'>
+                    <button class="form-submit">Proceed to checkout</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <script src="./Validator.js"></script>
+    <script>
+        let orderDetails = {
+            orderData : [
+                {
+                    isChecked : true,
+                    name: "Quick bit",
+                    price: 18,
+                    selectedValue: 2
+                },
+                {
+                    isChecked : true,
+                    name: "Fresh & flavorful",
+                    price: 15,
+                    selectedValue: 1
+                }
+            ],
+            totalCost : 51
+        }
+        let form = new Validator("#order-form");
+            form.onSubmit = function(dataValue) {
+                dataValue = { ...dataValue, orderDetails: orderDetails };
+                console.log(dataValue);
+            }
+    </script>
+</body>
+</html>
